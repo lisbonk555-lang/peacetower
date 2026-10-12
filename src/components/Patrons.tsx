@@ -60,12 +60,12 @@ export default function Patrons() {
             >
               
               {/* Profile Portrait Container */}
-              <div className="w-36 h-36 sm:w-44 sm:h-auto overflow-hidden rounded-md border border-gold-500/25 p-1 bg-royal-950 relative shrink-0 aspect-square sm:aspect-auto">
+              <div className="w-36 h-36 sm:w-48 sm:h-52 overflow-hidden rounded-xl border-2 border-gold-500/30 p-1.5 bg-gradient-to-b from-royal-900/60 to-royal-950 relative shrink-0 aspect-square sm:aspect-auto flex items-center justify-center shadow-lg">
                 {patron.imageUrl ? (
                   <img 
                     src={patron.imageUrl} 
                     alt={patron.name} 
-                    className="w-full h-full object-cover rounded" 
+                    className={`w-full h-full ${patron.id === 'kwesi_atta' ? 'object-contain' : 'object-cover'} rounded-lg drop-shadow-xl`} 
                     referrerPolicy="no-referrer"
                   />
                 ) : (

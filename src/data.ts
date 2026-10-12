@@ -113,7 +113,7 @@ export const NOBLE_PATRONS: Patron[] = [
       "Host of state-level launching ceremonies at the Banquet Hall in Accra"
     ],
     imageIndex: 13,
-    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToysYm_q4KaWAyaoCZgkYJeSXTL9MbzYu-Jw&s"
+    imageUrl: "https://i.ibb.co/5x6TdXJF/HRM-OSABARIMBA-II-1.png"
   }
 ];
 

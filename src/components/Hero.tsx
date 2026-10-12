@@ -218,20 +218,20 @@ export default function Hero({ onExplore }: HeroProps) {
 
             {/* Middle Image */}
             <div className="flex flex-col items-center group">
-              <div className="relative w-44 h-56 rounded-md overflow-hidden border border-gold-500/35 p-1 bg-royal-950 shadow-lg shadow-gold-500/5 group-hover:border-gold-500/60 transition-all scale-100 group-hover:scale-105 active:scale-[0.98]">
+              <div className="relative w-48 sm:w-52 h-60 sm:h-64 rounded-xl overflow-hidden border-2 border-gold-500/40 p-1.5 bg-gradient-to-b from-royal-900/80 to-royal-950 shadow-xl shadow-gold-500/10 group-hover:border-gold-400 transition-all scale-100 group-hover:scale-105 active:scale-[0.98] flex items-center justify-center">
                 <img 
-                  src="https://www.myjoyonline.com/wp-content/uploads/2024/08/Osabarima_Kwesi_Atta.jpg" 
-                  alt="Osabarima Kwesi Atta II" 
-                  className="w-full h-full object-cover rounded"
+                  src="https://i.ibb.co/5x6TdXJF/HRM-OSABARIMBA-II-1.png" 
+                  alt="HRM Osabarimba Kwesi Atta II" 
+                  className="w-full h-full object-contain drop-shadow-2xl rounded-lg transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-royal-950/60 via-transparent to-transparent opacity-80" />
-                <span className="absolute bottom-2 left-2 font-mono text-[8px] uppercase tracking-wider text-gold-300 bg-royal-950/90 px-1.5 py-0.5 rounded border border-gold-500/20">
-                  Osabarima Kwesi Atta II
+                <div className="absolute inset-0 bg-gradient-to-t from-royal-950/80 via-transparent to-transparent opacity-70 pointer-events-none" />
+                <span className="absolute bottom-2 left-2 right-2 text-center font-mono text-[9px] uppercase tracking-wider text-gold-200 bg-royal-950/90 px-2 py-1 rounded border border-gold-500/30 backdrop-blur-sm shadow-md font-bold truncate">
+                  HRM Osabarimba Kwesi Atta II
                 </span>
               </div>
-              <span className="mt-3 font-mono text-[9px] sm:text-[10px] text-gold-400/80 text-center tracking-wider max-w-[180px] leading-normal uppercase font-bold">
-                Paramount Host & Patron
+              <span className="mt-3 font-mono text-[10px] sm:text-[11px] text-gold-400 text-center tracking-wider max-w-[200px] leading-normal uppercase font-bold">
+                Paramount Host & Royal Patron
               </span>
             </div>
 
