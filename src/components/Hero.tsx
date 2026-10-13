@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowDown, Handshake, ShieldAlert, Award, ChevronRight, Gavel, Sparkles, BookOpen, X, Check, Landmark, Calendar, HeartHandshake, Globe } from 'lucide-react';
+import { ArrowDown, Handshake, ShieldAlert, Award, ChevronRight, Gavel, Sparkles, BookOpen, X, Check, Landmark, Calendar, HeartHandshake, Globe, Crown, ZoomIn, Shield } from 'lucide-react';
 import { RoyalImage } from './RoyalImage';
 
 interface HeroProps {
@@ -9,6 +9,7 @@ interface HeroProps {
 
 export default function Hero({ onExplore }: HeroProps) {
   const [isCharterOpen, setIsCharterOpen] = useState(false);
+  const [isOsabarimbaModalOpen, setIsOsabarimbaModalOpen] = useState(false);
 
   const highlightPoints = [
     { icon: Gavel, text: "Verbal Dispute Settlement", color: "text-rose-400" },
@@ -192,67 +193,94 @@ export default function Hero({ onExplore }: HeroProps) {
           <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-gold-500/40 rounded-bl" />
           <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-gold-500/40 rounded-br" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-items-center">
             
-            {/* Left Image */}
+            {/* Left Image: Campaign Document */}
             <div 
-              className="flex flex-col items-center cursor-pointer group"
+              className="lg:col-span-3 flex flex-col items-center cursor-pointer group"
               onClick={() => onExplore('african-living-legends')}
             >
-              <div className="relative w-44 h-56 rounded-md overflow-hidden border border-gold-500/35 p-1 bg-royal-950 shadow-lg shadow-gold-500/5 group-hover:border-gold-500/60 transition-all scale-100 group-hover:scale-105 active:scale-[0.98]">
+              <div className="relative w-48 sm:w-52 h-64 sm:h-72 rounded-xl overflow-hidden border border-gold-500/35 p-1 bg-royal-950 shadow-lg shadow-gold-500/5 group-hover:border-gold-500/60 transition-all scale-100 group-hover:scale-105 active:scale-[0.98]">
                 <img 
                   src="https://i.ibb.co/hFt12nmB/Whats-App-Image-2026-06-23-at-22-42-24.jpg" 
                   alt="Peace Campaign Document" 
-                  className="w-full h-full object-cover rounded"
+                  className="w-full h-full object-cover rounded-lg"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-royal-950/60 via-transparent to-transparent opacity-80" />
-                <span className="absolute bottom-2 left-2 font-mono text-[8px] uppercase tracking-wider text-gold-300 bg-royal-950/90 px-1.5 py-0.5 rounded border border-gold-500/20">
+                <div className="absolute inset-0 bg-gradient-to-t from-royal-950/70 via-transparent to-transparent opacity-80" />
+                <span className="absolute bottom-2.5 left-2.5 font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-gold-300 bg-royal-950/90 px-2 py-0.5 rounded border border-gold-500/30">
                   Campaign Document
                 </span>
               </div>
-              <span className="mt-3 font-mono text-[9px] sm:text-[10px] text-gold-400 group-hover:text-gold-200 text-center tracking-wider max-w-[180px] leading-normal transition-colors uppercase font-bold">
+              <span className="mt-3 font-mono text-[9px] sm:text-[10px] text-gold-400 group-hover:text-gold-200 text-center tracking-wider max-w-[200px] leading-normal transition-colors uppercase font-bold">
                 Click the image to visit the programs page
               </span>
             </div>
 
-            {/* Middle Image */}
-            <div className="flex flex-col items-center group">
-              <div className="relative w-48 sm:w-52 h-60 sm:h-64 rounded-xl overflow-hidden border-2 border-gold-500/40 p-1.5 bg-gradient-to-b from-royal-900/80 to-royal-950 shadow-xl shadow-gold-500/10 group-hover:border-gold-400 transition-all scale-100 group-hover:scale-105 active:scale-[0.98] flex items-center justify-center">
-                <img 
-                  src="https://i.ibb.co/5x6TdXJF/HRM-OSABARIMBA-II-1.png" 
-                  alt="HRM Osabarimba Kwesi Atta II" 
-                  className="w-full h-full object-contain drop-shadow-2xl rounded-lg transition-transform duration-500 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-royal-950/80 via-transparent to-transparent opacity-70 pointer-events-none" />
-                <span className="absolute bottom-2 left-2 right-2 text-center font-mono text-[9px] uppercase tracking-wider text-gold-200 bg-royal-950/90 px-2 py-1 rounded border border-gold-500/30 backdrop-blur-sm shadow-md font-bold truncate">
-                  HRM Osabarimba Kwesi Atta II
-                </span>
+            {/* Middle Image: HRM Osabarimba Kwesi Atta II - VERY LARGE & VERY VISIBLE */}
+            <div className="lg:col-span-6 flex flex-col items-center w-full">
+              <div 
+                onClick={() => setIsOsabarimbaModalOpen(true)}
+                className="group relative w-full max-w-[360px] sm:max-w-[420px] md:max-w-[460px] h-[450px] sm:h-[520px] md:h-[580px] rounded-2xl overflow-hidden border-2 border-gold-400/60 p-2 sm:p-3 bg-gradient-to-b from-royal-900/90 via-royal-950 to-royal-950 shadow-2xl shadow-gold-500/25 group-hover:border-gold-300 transition-all cursor-pointer flex flex-col items-center justify-between"
+              >
+                {/* Radiant golden sunburst backglow */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-500/30 via-royal-900/70 to-transparent pointer-events-none" />
+                <div className="absolute inset-1.5 rounded-xl border border-gold-500/25 pointer-events-none" />
+
+                {/* Top Sovereign Crest Tag */}
+                <div className="relative z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-royal-950/90 border border-gold-500/50 text-gold-300 font-mono text-[10px] tracking-wider uppercase shadow-lg backdrop-blur-sm self-center mt-1">
+                  <Crown className="w-3.5 h-3.5 text-gold-400 animate-pulse" />
+                  <span className="font-bold">Sovereign Royal Patron</span>
+                </div>
+
+                {/* Large Center Portrait */}
+                <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden my-1">
+                  <img 
+                    src="https://i.ibb.co/5x6TdXJF/HRM-OSABARIMBA-II-1.png" 
+                    alt="HRM Osabarimba Kwesi Atta II" 
+                    className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(212,175,55,0.45)] transition-transform duration-700 group-hover:scale-[1.04]"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Bottom Nameplate with Enlarge Prompt */}
+                <div className="relative z-20 w-full p-2.5 rounded-xl bg-royal-950/90 border border-gold-500/40 backdrop-blur-md text-center space-y-1">
+                  <div className="font-serif text-xs sm:text-sm md:text-base font-extrabold text-gold-100 tracking-wide">
+                    HRM OSABARIMBA KWESI ATTA II
+                  </div>
+                  <div className="font-mono text-[9px] sm:text-[10px] text-gold-400 tracking-wider uppercase font-semibold">
+                    Oguaa Omanhen • Paramount Ruler of Cape Coast
+                  </div>
+                  <div className="inline-flex items-center gap-1 text-[9px] font-mono text-gold-300/80 uppercase pt-0.5">
+                    <ZoomIn className="w-3 h-3 text-gold-400" />
+                    <span>Click to view full size</span>
+                  </div>
+                </div>
               </div>
-              <span className="mt-3 font-mono text-[10px] sm:text-[11px] text-gold-400 text-center tracking-wider max-w-[200px] leading-normal uppercase font-bold">
-                Paramount Host & Royal Patron
+
+              <span className="mt-3 font-mono text-[11px] sm:text-xs text-gold-300 text-center tracking-wider max-w-sm leading-normal uppercase font-bold">
+                ✦ Paramount Host & Pioneer Champion of Peace Tower ✦
               </span>
             </div>
 
-            {/* Right Image */}
+            {/* Right Image: Peace Tower Seal */}
             <div 
-              className="flex flex-col items-center cursor-pointer group"
+              className="lg:col-span-3 flex flex-col items-center cursor-pointer group"
               onClick={() => onExplore('ghana-thank-you-awards')}
             >
-              <div className="relative w-44 h-56 rounded-md overflow-hidden border border-gold-500/35 p-1 bg-royal-950 shadow-lg shadow-gold-500/5 group-hover:border-gold-500/60 transition-all scale-100 group-hover:scale-105 active:scale-[0.98]">
+              <div className="relative w-48 sm:w-52 h-64 sm:h-72 rounded-xl overflow-hidden border border-gold-500/35 p-1 bg-royal-950 shadow-lg shadow-gold-500/5 group-hover:border-gold-500/60 transition-all scale-100 group-hover:scale-105 active:scale-[0.98]">
                 <img 
                   src="https://i.postimg.cc/h48tSXD8/IMG-20260616-WA0010.jpg" 
                   alt="Peace Tower Seal" 
-                  className="w-full h-full object-cover rounded"
+                  className="w-full h-full object-cover rounded-lg"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-royal-950/60 via-transparent to-transparent opacity-80" />
-                <span className="absolute bottom-2 left-2 font-mono text-[8px] uppercase tracking-wider text-gold-300 bg-royal-950/90 px-1.5 py-0.5 rounded border border-gold-500/20">
+                <div className="absolute inset-0 bg-gradient-to-t from-royal-950/70 via-transparent to-transparent opacity-80" />
+                <span className="absolute bottom-2.5 left-2.5 font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-gold-300 bg-royal-950/90 px-2 py-0.5 rounded border border-gold-500/30">
                   Peace Tower Seal
                 </span>
               </div>
-              <span className="mt-3 font-mono text-[9px] sm:text-[10px] text-gold-400 group-hover:text-gold-200 text-center tracking-wider max-w-[180px] leading-normal transition-colors uppercase font-bold">
+              <span className="mt-3 font-mono text-[9px] sm:text-[10px] text-gold-400 group-hover:text-gold-200 text-center tracking-wider max-w-[200px] leading-normal transition-colors uppercase font-bold">
                 Click the image to visit the programs page
               </span>
             </div>
@@ -521,6 +549,61 @@ export default function Hero({ onExplore }: HeroProps) {
                 </button>
               </div>
 
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* HRM Osabarimba Kwesi Atta II Fullscreen Lightbox Modal */}
+      <AnimatePresence>
+        {isOsabarimbaModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-10 select-none">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOsabarimbaModalOpen(false)}
+              className="absolute inset-0 bg-royal-950/95 backdrop-blur-md cursor-pointer"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-full max-w-4xl max-h-[92vh] overflow-hidden rounded-2xl royal-glass border-2 border-gold-400/60 bg-gradient-to-b from-royal-900 via-royal-950 to-royal-950 shadow-2xl flex flex-col z-10"
+            >
+              <div className="flex items-center justify-between p-4 sm:p-5 border-b border-gold-500/20 bg-royal-950/80">
+                <div className="flex items-center gap-2.5">
+                  <Crown className="w-5 h-5 text-gold-400" />
+                  <div>
+                    <h4 className="font-serif text-sm sm:text-base font-bold text-gold-100 uppercase tracking-wide">
+                      HRM Osabarimba Kwesi Atta II
+                    </h4>
+                    <p className="font-mono text-[10px] text-gold-400 uppercase">
+                      Oguaa Omanhen — Paramount Ruler of Cape Coast
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsOsabarimbaModalOpen(false)}
+                  className="p-2 rounded-lg bg-royal-900 border border-gold-500/30 text-gold-300 hover:text-gold-100 hover:bg-gold-500/20 transition-all cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="relative flex-1 p-4 sm:p-8 flex items-center justify-center overflow-auto bg-royal-950/90">
+                <img
+                  src="https://i.ibb.co/5x6TdXJF/HRM-OSABARIMBA-II-1.png"
+                  alt="HRM Osabarimba Kwesi Atta II"
+                  className="max-h-[75vh] w-auto object-contain drop-shadow-[0_20px_50px_rgba(212,175,55,0.4)] select-none"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
+              <div className="p-3 sm:p-4 border-t border-gold-500/20 bg-royal-950/90 text-center font-mono text-xs text-gold-300 tracking-wider uppercase">
+                ✦ Sovereign Patron & Pioneer Host of Peace Tower of Africa ✦
+              </div>
             </motion.div>
           </div>
         )}

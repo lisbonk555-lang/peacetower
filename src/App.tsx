@@ -17,6 +17,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import SlidingGallery from './components/SlidingGallery';
 import HomepagePhotoShowcase from './components/HomepagePhotoShowcase';
+import RoyalPatronSpotlight from './components/RoyalPatronSpotlight';
 import PeaceWisdom from './components/PeaceWisdom';
 import BackToTop from './components/BackToTop';
 import GhanaThankYouAwards from './components/GhanaThankYouAwards';
@@ -88,6 +89,9 @@ export default function App() {
 
       {/* Hero Intro Spotlight */}
       <Hero onExplore={handleNavigate} />
+
+      {/* Sovereign Royal Patron & Paramount Ruler Spotlight - Very Large Homepage Showcase */}
+      <RoyalPatronSpotlight />
 
       {/* Instant Endless Sliding Gallery Photostream (All 21 historic photographs) */}
       <SlidingGallery />
