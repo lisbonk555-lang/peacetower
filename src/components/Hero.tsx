@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowDown, Handshake, ShieldAlert, Award, ChevronRight, Gavel, Sparkles, BookOpen, X, Check, Landmark, Calendar, HeartHandshake, Globe, Crown, ZoomIn, Shield } from 'lucide-react';
+import { ArrowDown, Handshake, ShieldAlert, Award, ChevronRight, Gavel, Sparkles, BookOpen, X, Check, Landmark, Calendar, HeartHandshake, Globe, Crown, ZoomIn, Shield, Tv } from 'lucide-react';
 import { RoyalImage } from './RoyalImage';
 
 interface HeroProps {
@@ -103,6 +103,13 @@ export default function Hero({ onExplore }: HeroProps) {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="flex flex-wrap gap-4 pt-4"
             >
+              <button
+                onClick={() => onExplore('uabn-tv-ghana')}
+                className="px-6 py-3 rounded bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-serif font-black text-xs sm:text-sm tracking-widest uppercase transition-all shadow-lg shadow-red-600/20 scale-100 hover:scale-[1.03] active:scale-[0.98] border border-gold-400/40 cursor-pointer flex items-center justify-center gap-2"
+              >
+                <Tv className="w-4 h-4 text-gold-300" />
+                <span>Watch UABN TV GHANA</span>
+              </button>
               <button
                 onClick={() => onExplore('african-living-legends')}
                 className="px-6 py-3 rounded bg-gradient-to-r from-gold-600 to-gold-400 text-royal-950 font-serif font-extrabold text-xs sm:text-sm tracking-widest uppercase hover:from-gold-500 hover:to-gold-300 transition-all shadow-lg shadow-gold-500/10 scale-100 hover:scale-[1.03] active:scale-[0.98] border border-gold-300/30 cursor-pointer"

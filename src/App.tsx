@@ -21,16 +21,45 @@ import RoyalPatronSpotlight from './components/RoyalPatronSpotlight';
 import PeaceWisdom from './components/PeaceWisdom';
 import BackToTop from './components/BackToTop';
 import GhanaThankYouAwards from './components/GhanaThankYouAwards';
+import PeaceTowerTV from './components/PeaceTowerTV';
+import UNBATVGhanaPage from './components/UNBATVGhanaPage';
+import UABNTVGhanaSection from './components/UABNTVGhanaSection';
 import { Sparkles, MessageSquareCode, Volume2, X } from 'lucide-react';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
   const [showTicker, setShowTicker] = useState(true);
+  const [currentView, setCurrentView] = useState<'portal' | 'unbatv'>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#unbatv' || hash === '#unbatv-ghana' || hash === '#channel') {
+        return 'unbatv';
+      }
+    }
+    return 'portal';
+  });
 
-  // Simple scroll listener to spy scroll active positions
+  // Handle URL hash changes
   useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#unbatv' || hash === '#unbatv-ghana' || hash === '#channel') {
+        setCurrentView('unbatv');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (currentView === 'unbatv' && !hash.startsWith('#unbatv')) {
+        setCurrentView('portal');
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [currentView]);
+
+  // Simple scroll listener to spy scroll active positions in portal view
+  useEffect(() => {
+    if (currentView !== 'portal') return;
+
     const handleScroll = () => {
-      const sections = ['hero', 'african-living-legends', 'ghana-thank-you-awards', 'patrons', 'contact'];
+      const sections = ['hero', 'uabn-tv-ghana', 'peace-tower-tv', 'african-living-legends', 'ghana-thank-you-awards', 'patrons', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const sect of sections) {
@@ -47,9 +76,30 @@ export default function App() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentView]);
 
   const handleNavigate = (sectionId: string) => {
+    if (sectionId === 'unbatv-page' || sectionId === 'unbatv') {
+      setCurrentView('unbatv');
+      window.location.hash = '#unbatv';
+      setActiveSection('unbatv-page');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (currentView === 'unbatv') {
+      setCurrentView('portal');
+      window.location.hash = '';
+      setTimeout(() => {
+        setActiveSection(sectionId);
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+      return;
+    }
+
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
@@ -84,46 +134,71 @@ export default function App() {
         </div>
       )}
 
-      {/* Floating Header Navbar */}
-      <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
+      {currentView === 'unbatv' ? (
+        <UNBATVGhanaPage 
+          onBackToHome={() => {
+            setCurrentView('portal');
+            window.location.hash = '';
+            setActiveSection('peace-tower-tv');
+          }}
+          onNavigateSection={handleNavigate}
+        />
+      ) : (
+        <>
+          {/* Floating Header Navbar */}
+          <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
 
-      {/* Hero Intro Spotlight */}
-      <Hero onExplore={handleNavigate} />
+          {/* Hero Intro Spotlight */}
+          <Hero onExplore={handleNavigate} />
 
-      {/* Sovereign Royal Patron & Paramount Ruler Spotlight - Very Large Homepage Showcase */}
-      <RoyalPatronSpotlight />
+          {/* Sovereign Royal Patron & Paramount Ruler Spotlight - Very Large Homepage Showcase */}
+          <RoyalPatronSpotlight />
 
-      {/* Instant Endless Sliding Gallery Photostream (All 21 historic photographs) */}
-      <SlidingGallery />
+          {/* Instant Endless Sliding Gallery Photostream (All 21 historic photographs) */}
+          <SlidingGallery />
 
-      {/* Featured Homepage High-Visibility Side-by-Side Photographic Showcase */}
-      <HomepagePhotoShowcase />
+          {/* Featured Homepage High-Visibility Side-by-Side Photographic Showcase */}
+          <HomepagePhotoShowcase />
 
-      {/* Main Narrative Sections */}
-      <main id="main-content">
-        
-        {/* African Living Legends Section */}
-        <AfricanLivingLegends />
+          {/* UABN TV GHANA Dedicated TV Channel Section */}
+          <UABNTVGhanaSection />
 
-        {/* Ghana Thank You Awards Section */}
-        <GhanaThankYouAwards />
+          {/* Official Peace Tower TV • 24/7 Pan-African Online TV Channel */}
+          <PeaceTowerTV 
+            onOpenUNBAPage={() => {
+              setCurrentView('unbatv');
+              window.location.hash = '#unbatv';
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
 
-        {/* Rotating peace & unity quotes from African Leaders (Peace Wisdom card) */}
-        <PeaceWisdom />
+          {/* Main Narrative Sections */}
+          <main id="main-content">
+            
+            {/* African Living Legends Section */}
+            <AfricanLivingLegends />
 
-        {/* Noble Patrons */}
-        <Patrons />
+            {/* Ghana Thank You Awards Section */}
+            <GhanaThankYouAwards />
 
-        {/* Contact Us Channels and Support Endorsements */}
-        <ContactSection />
+            {/* Rotating peace & unity quotes from African Leaders (Peace Wisdom card) */}
+            <PeaceWisdom />
 
-      </main>
+            {/* Noble Patrons */}
+            <Patrons />
 
-      {/* Royal Footer */}
-      <Footer onScrollToTop={() => handleNavigate('hero')} />
+            {/* Contact Us Channels and Support Endorsements */}
+            <ContactSection />
 
-      {/* Back to Top Floating Button Trigger */}
-      <BackToTop />
+          </main>
+
+          {/* Royal Footer */}
+          <Footer onScrollToTop={() => handleNavigate('hero')} />
+
+          {/* Back to Top Floating Button Trigger */}
+          <BackToTop />
+        </>
+      )}
 
     </div>
   );

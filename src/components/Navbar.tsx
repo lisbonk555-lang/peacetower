@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Shield, Handshake, Compass, Award, Image, UserCheck, MessageSquare, History, Sparkles } from 'lucide-react';
+import { Menu, X, Shield, Handshake, Compass, Award, Image, UserCheck, MessageSquare, History, Sparkles, Tv, Youtube } from 'lucide-react';
 import { RoyalImage } from './RoyalImage';
 import PTALogo from './PTALogo';
 
@@ -27,6 +27,9 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
 
   const menuItems = [
     { id: 'hero', name: 'Home', icon: Compass },
+    { id: 'uabn-tv-ghana', name: 'UABN TV GHANA', icon: Tv, isLive: true },
+    { id: 'peace-tower-tv', name: 'Online TV', icon: Tv },
+    { id: 'unbatv-page', name: 'UNBATV Page', icon: Youtube },
     { id: 'african-living-legends', name: 'Living Legends', icon: Award },
     { id: 'ghana-thank-you-awards', name: 'GTYA Awards', icon: History },
     { id: 'patrons', name: 'Patrons', icon: UserCheck },
@@ -89,6 +92,11 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
                   >
                     <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-gold-400' : 'text-royal-100/60'}`} />
                     {item.name}
+                    {item.isLive && (
+                      <span className="px-1.5 py-0.5 rounded-full bg-rose-600 text-white font-mono text-[8px] font-bold tracking-widest uppercase animate-pulse shadow-sm">
+                        LIVE
+                      </span>
+                    )}
                     {isActive && (
                       <motion.div 
                         layoutId="activeSubbar"
@@ -142,14 +150,21 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
                     key={item.id}
                     id={`mobile-nav-link-${item.id}`}
                     onClick={() => handleLinkClick(item.id)}
-                    className={`w-full px-4 py-3 rounded-md flex items-center gap-3 font-sans text-sm font-bold uppercase tracking-wider transition-all border ${
+                    className={`w-full px-4 py-3 rounded-md flex items-center justify-between font-sans text-sm font-bold uppercase tracking-wider transition-all border ${
                       isActive 
                         ? 'bg-royal-900 border-gold-500/30 text-gold-400 shadow-inner' 
                         : 'border-transparent text-royal-100 hover:text-gold-300 hover:bg-royal-900/50'
                     }`}
                   >
-                    <Icon className="w-4 h-4 text-gold-400" />
-                    {item.name}
+                    <div className="flex items-center gap-3">
+                      <Icon className="w-4 h-4 text-gold-400" />
+                      <span>{item.name}</span>
+                    </div>
+                    {item.isLive && (
+                      <span className="px-2 py-0.5 rounded-full bg-rose-600 text-white font-mono text-[9px] font-bold tracking-widest uppercase animate-pulse">
+                        LIVE ON AIR
+                      </span>
+                    )}
                   </button>
                 );
               })}
